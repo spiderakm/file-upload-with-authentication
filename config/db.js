@@ -1,6 +1,6 @@
-const {Sequilize} = require('sequelize')
+const {Sequelize} = require('sequelize')
 
-const createDB = new Sequilize('test-db','user','pass',{
+const createDB = new Sequelize('test-db','user','pass',{
     dialect:'sqlite',
     host:'./config/db.sqlite'
 })
