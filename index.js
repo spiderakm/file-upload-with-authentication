@@ -1,23 +1,26 @@
-const express = require('express')
-const app  =  express()
-const {connectDB} = require('./config/db')
-const userRoutes = require('./routes/user')
-
-
+const express = require("express");
+const logger = require("morgan");
+const { connectToDB } = require("./config/db");
+const userRoutes = require("./routes/user");
+const productRoutes = require("./routes/product");
 
 const PORT = 1338;
-//middlewares
-app.use(express.json())
-app.use(express.static('content'));
-app.use(express.urlencoded({extended:false}))
 
+const app = express();
+connectToDB();
 
-app.use('/api/v1/user',userRoutes)
+app.use(express.json());
+app.use(logger("dev"));
+express.static("Content");
 
-app.listen(PORT,()=>{
-    
-    console.log("server is running")
-    connectDB();
-})
+// Routes
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/product", productRoutes);
 
+app.get("/", async (_req, res) => {
+  return res.status(200).send("API works");
+});
 
+app.listen(PORT, () => {
+  console.log(`Server is running at port:${PORT}`);
+});

@@ -5,11 +5,11 @@ const createDB = new Sequelize('test-db','user','pass',{
     host:'./config/db.sqlite'
 })
 
-const connectDB = () => {
+const connectToDB = () => {
     createDB.sync().then(() => {
         console.log("connected to db")
     })
     .catch((e) => console.log("db failed",e))
 }
 
-module.exports = { createDB,connectDB }
+module.exports = { createDB,connectToDB }
