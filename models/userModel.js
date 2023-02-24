@@ -10,7 +10,7 @@ const User = createDB.define("user",{
         type:DataTypes.INTEGER
     },
     name:DataTypes.STRING,
-    email:dataTypes.STRING,
+    email:DataTypes.STRING,
     password:DataTypes.STRING,
     isSeller:{
         type:DataTypes.BOOLEAN,
